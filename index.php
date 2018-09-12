@@ -6,7 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
-   <form action="" method="post" enctype="multipart/form-data">  
+   <form method="post" name="frm" id="frm">  
    <div style="width:200px;border-radius:6px;margin:0px auto">  
 <table border="1">  
    <tr>  
@@ -14,33 +14,40 @@
    </tr>  
    <tr>  
       <td>Ruby</td>  
-      <td><input type="checkbox" name="code[]" value="Ruby"></td>  
+      <td><input type="checkbox" name="code[]" value="Ruby" ></td>  
    </tr>  
    <tr>  
       <td>Perl</td>  
-      <td><input type="checkbox" name="code[]" value="Perl"></td>  
+      <td><input type="checkbox" name="code[]" value="Perl" ></td>  
    </tr>  
    <tr>  
       <td>Python</td>  
-      <td><input type="checkbox" name="code[]" value="Python"></td>  
+      <td><input type="checkbox" name="code[]" value="Python" ></td>  
    </tr>  
    <tr>  
       <td>Php</td>  
-      <td><input type="checkbox" name="code[]" value="Php"></td>  
+      <td><input type="checkbox" name="code[]" value="Php" ></td>  
    </tr>  
    <tr>  
-      <td colspan="2" align="center"><input type="submit" value="submit" name="enviar"></td>  
+      <td>
+          <a class='btn btn-primary' onclick="document.forms['frm'].submit()" >Aceptar</a>
+      </td> 
+      <td></td> 
    </tr>  
 </table>  
 </div>  
-</form>  
-       <?php  
-if(isset($_POST['enviar']))  
-{ 
-$checkbox1=$_POST['code'];   
-   $cadena= implode(",", $checkbox1);
-       echo "<a class='btn btn-primary' href='index.php?valores=$cadena' role='button'>Aceptar</a>";
-}  
+</form> 
+
+
+       <?php
+
+           if(isset($_POST['code']))
+    {
+
+        $action=implode(',',$_REQUEST['code']);
+        header('location:index.php?valores='.$action.'');
+    }  
+
 ?>
 
 </body>  
